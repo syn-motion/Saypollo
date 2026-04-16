@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-accent-pink: #FD50AC;
+  --color-accent-blue: #4A43EE;
+  --color-accent-orange: #FF4201;
+  --color-accent-yellow: #FED235;
+  --color-bg-dark: #0D0D0D;
+
+  --border-infra: 0.5px solid rgba(255, 255, 255, 0.15);
+}
+
+@layer base {
+  body {
+    @apply bg-bg-dark text-white selection:bg-accent-pink selection:text-white antialiased;
+    font-family: var(--font-sans);
+  }
+
+  html.lenis {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+}
+
+@layer components {
+  .infra-grid {
+    @apply grid grid-cols-12 w-full;
+  }
+
+  .infra-border-t {
+    border-top: var(--border-infra);
+  }
+
+  .infra-border-b {
+    border-bottom: var(--border-infra);
+  }
+
+  .infra-border-l {
+    border-left: var(--border-infra);
+  }
+
+  .infra-border-r {
+    border-right: var(--border-infra);
+  }
+
+  .magnetic-btn {
+    @apply relative px-8 py-4 bg-white text-black rounded-full font-bold uppercase tracking-widest text-xs transition-transform duration-300;
+  }
+
+  .data-terminal {
+    @apply font-mono text-[10px] uppercase tracking-tighter opacity-50;
+  }
+}
+
+/* Custom Utilities */
+.text-huge {
+  font-size: clamp(3rem, 15vw, 12rem);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+}

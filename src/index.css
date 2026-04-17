@@ -70,11 +70,24 @@
   .data-terminal {
     @apply font-mono text-[10px] uppercase tracking-tighter opacity-50;
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Custom Utilities */
 .text-huge {
-  font-size: clamp(3rem, 15vw, 12rem);
+  font-size: clamp(2.5rem, 12vw, 12rem);
   line-height: 0.85;
   letter-spacing: -0.05em;
+}
+@screen md {
+  .text-huge {
+    font-size: clamp(3rem, 15vw, 12rem);
+  }
 }

@@ -66,12 +66,12 @@ const MagneticButton = ({ children, className }: { children: React.ReactNode; cl
 
 const SectionHeader = ({ number, title }: { number: string; title: string }) => (
   <div className="infra-grid infra-border-b bg-bg-dark/80 backdrop-blur-sm sticky top-0 z-20">
-    <div className="col-span-12 md:col-span-2 p-4 infra-border-r h-full flex items-center">
+    <div className="col-span-3 md:col-span-2 p-4 infra-border-r h-full flex items-center">
       <span className="data-terminal text-accent-pink">{number}</span>
     </div>
-    <div className="col-span-12 md:col-span-10 p-4 flex items-center justify-between">
-      <h2 className="font-mono text-xs uppercase tracking-widest font-bold">{title}</h2>
-      <ArrowUpRight className="w-4 h-4 opacity-50" />
+    <div className="col-span-9 md:col-span-10 p-4 flex items-center justify-between">
+      <h2 className="font-mono text-[10px] md:text-xs uppercase tracking-widest font-bold truncate pr-4">{title}</h2>
+      <ArrowUpRight className="w-4 h-4 opacity-50 shrink-0" />
     </div>
   </div>
 );
@@ -216,12 +216,15 @@ export default function App() {
         </div>
       </div>
 
-      <nav className="fixed top-0 w-full z-[100] infra-border-b bg-bg-dark/80 backdrop-blur-lg">
+      <nav className="fixed top-0 w-full z-[100] infra-border-b bg-bg-dark/90 backdrop-blur-xl transition-all duration-300">
         <div className="infra-grid">
-          <div className="col-span-2 p-4 md:p-6 infra-border-r flex items-center justify-center">
-            <span className="font-black text-xl tracking-tighter uppercase italic">Saypollo</span>
+          {/* Main Bar: Logo & Hamburger */}
+          <div className="col-span-6 md:col-span-2 p-4 md:p-6 infra-border-r flex items-center justify-start md:justify-center overflow-hidden">
+            <span className="font-black text-xl tracking-tighter uppercase italic whitespace-nowrap">Saypollo</span>
           </div>
-          <div className="col-span-8 p-6 flex items-center justify-between invisible md:visible px-12">
+          
+          {/* Desktop Nav Links */}
+          <div className="hidden md:flex md:col-span-8 p-6 items-center justify-between px-12">
             <div className="flex gap-12 font-mono text-[10px] uppercase tracking-widest font-bold">
               <a href="#work" className="hover:text-accent-pink transition-colors">Work</a>
               <a href="#diagnosis" className="hover:text-accent-pink transition-colors">Diagnosis</a>
@@ -229,11 +232,22 @@ export default function App() {
               <a href="#contact" className="hover:text-accent-pink transition-colors">Contact</a>
             </div>
           </div>
-          <div className="col-span-12 md:col-span-2 p-4 md:p-6 infra-border-l flex items-center justify-center pointer-events-auto">
+
+          <div className="col-span-6 md:col-span-2 p-4 md:p-6 md:infra-border-l flex items-center justify-end md:justify-center pointer-events-auto">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 hover:bg-white/10 rounded-full transition-colors flex items-center gap-2">
               <span className="data-terminal md:block hidden">System Menu</span>
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
+          </div>
+
+          {/* Mobile Navigation Strip (Visible on mobile only when not in menu) */}
+          <div className="col-span-12 md:hidden infra-border-t p-3 bg-white/5 overflow-x-auto">
+            <div className="flex justify-between px-2 gap-6 font-mono text-[9px] uppercase tracking-wider font-bold whitespace-nowrap scrollbar-hide">
+              <a href="#work" className="hover:text-accent-pink py-1">Work</a>
+              <a href="#diagnosis" className="hover:text-accent-pink py-1">Diagnosis</a>
+              <a href="#stats" className="hover:text-accent-pink py-1">Performance</a>
+              <a href="#contact" className="hover:text-accent-pink py-1">Contact</a>
+            </div>
           </div>
         </div>
       </nav>
@@ -276,15 +290,15 @@ export default function App() {
               </motion.div>
             </div>
           </div>
-          <div className="infra-grid infra-border-b py-12 px-6 md:px-20 bg-accent-yellow text-black overflow-hidden whitespace-nowrap">
+          <div className="infra-grid infra-border-b py-8 md:py-12 px-6 md:px-20 bg-accent-yellow text-black overflow-hidden whitespace-nowrap">
             <motion.div 
-              animate={{ x: [0, -2000] }}
+              animate={{ x: ["0%", "-50%"] }}
               transition={{ repeat: Infinity, duration: 30, ease: 'linear' }}
-              className="flex gap-20 items-center font-black text-4xl italic uppercase"
+              className="flex gap-20 items-center font-black text-xl md:text-4xl italic uppercase"
             >
-              {[...Array(20)].map((_, i) => (
-                <span key={i} className="flex items-center gap-4">
-                  PERFORMANCE DRIVEN <Target className="w-8 h-8" /> MOTION DESIGN <Activity className="w-8 h-8" />
+              {[...Array(30)].map((_, i) => (
+                <span key={i} className="flex items-center gap-4 flex-shrink-0">
+                  PERFORMANCE DRIVEN <Target className="w-6 h-6 md:w-8 md:h-8" /> MOTION DESIGN <Activity className="w-6 h-6 md:w-8 md:h-8" />
                 </span>
               ))}
             </motion.div>
